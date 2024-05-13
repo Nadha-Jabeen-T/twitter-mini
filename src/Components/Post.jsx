@@ -1,11 +1,10 @@
-const names = ["Joe Goldberg","Zayn Malik"];
-function Post(){
+import classes from "./Post.module.css";
 
-const chosenName = Math.random()>0.5 ? names[0] : names[1];
+function Post(props){
     return (
-        <div>
-            <p>{chosenName}</p>
-            <p>Counting days till the D-Day!</p>
+        <div className={classes.post}>
+            <p className={classes.author}>{props.author}</p>
+            <p className={classes.body}>{props.body}</p>
         </div>
     );
 }
