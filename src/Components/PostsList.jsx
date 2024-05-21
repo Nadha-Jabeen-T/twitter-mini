@@ -6,13 +6,10 @@ import Modal from "./Modal";
 
 import { useState } from "react";
 
-function PostsList() {
+function PostsList({isPosting, onStopPosting}) {
     const [enteredBody,setEnteredBody] = useState("");
     //setEnteredBody is a function that updates useState[0]
     const [enteredAuthor,setEnteredAuthor] = useState("");
-
-    //Registering the state for toggle visibility of Modal
-    const [modalIsVisible, setModalIsVisible] = useState(true);
 
     function bodyChangeHandler(event) {
         setEnteredBody(event.target.value);
@@ -22,14 +19,10 @@ function PostsList() {
         setEnteredAuthor(event.target.value);
     }
 
-    function hideModalHandler(params) {
-        setModalIsVisible(false);
-    }
-
     return(
         <>
-        {modalIsVisible ? (
-        <Modal onClose={hideModalHandler}>
+        {isPosting ? (
+        <Modal onClose={onStopPosting}>
             <NewPost onBodyChange={bodyChangeHandler} onAuthorChange={authorChangeHandler}/>
         </Modal>)  : null}
         <ul className={classes.posts}>
