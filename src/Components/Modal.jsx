@@ -3,7 +3,7 @@ import classes from "./Modal.module.css";
 function Modal(props) {
     return(
         <>
-            <div className={classes.backdrop}/>
+            <div className={classes.backdrop} onClick={props.onClose}/>
             <dialog open className={classes.modal}>
                 {props.children}
             </dialog>
@@ -11,3 +11,7 @@ function Modal(props) {
     );
 }
 export default Modal;
+
+/*
+ Instead of passing props, and using props.children, props.onClose => use destructuring objects {children,onClose} and use directly
+*/
