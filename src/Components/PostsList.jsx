@@ -7,27 +7,22 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 function PostsList({isPosting, onStopPosting}) {
-    const [enteredBody,setEnteredBody] = useState("");
-    //setEnteredBody is a function that updates useState[0]
-    const [enteredAuthor,setEnteredAuthor] = useState("");
+    const [posts,setPosts] = useState([]);//To maintain the list of posts
 
-    function bodyChangeHandler(event) {
-        setEnteredBody(event.target.value);
-    }
-
-    function authorChangeHandler(event) {
-        setEnteredAuthor(event.target.value);
+    //To add the new post component whenever we get new postData
+    function addPostHandler(postData) {
+        setPosts((existingPosts) => [postData,...existingPosts]);//Passing a new array to setPosts + combining the things from the previous posts array using spread operator
     }
 
     return(
         <>
         {isPosting ? (
         <Modal onClose={onStopPosting}>
-            <NewPost onBodyChange={bodyChangeHandler} onAuthorChange={authorChangeHandler} onCancel={onStopPosting}/>
+            <NewPost onCancel={onStopPosting} onAddPost={addPostHandler}/>
         </Modal>)  : null}
         <ul className={classes.posts}>
-            <li><Post author={enteredAuthor} body={enteredBody}/></li>
-            <li><Post author={enteredAuthor} body={enteredBody}/></li>
+            <li><Post author="Max" body="Blak"/></li>
+            <li><Post author="Mina" body="Tutu"/></li>
         </ul>
         </>
     );
