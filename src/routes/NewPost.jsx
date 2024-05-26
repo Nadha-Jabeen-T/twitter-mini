@@ -1,3 +1,4 @@
+import Modal from "../Components/Modal";
 import classes from "./NewPost.module.css";
 
 import { useState } from "react";
@@ -25,7 +26,8 @@ function NewPost(props) {
         props.onCancel();
     }
     return(
-        <form className={classes.form} onSubmit={submitHandler}>
+        <Modal>
+            <form className={classes.form} onSubmit={submitHandler}>
             <p>
                 <label htmlFor="body">Text</label>
                 <textarea id="body" required rows={3} onChange={bodyChangeHandler}/>
@@ -38,7 +40,9 @@ function NewPost(props) {
                 <button type="button" onClick={props.onCancel}>Cancel</button>
                 <button>Submit</button>
             </p>
-        </form>
+            </form>
+        </Modal>
+        
     );
 }
 export default NewPost;
